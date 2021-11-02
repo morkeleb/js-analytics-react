@@ -1,5 +1,5 @@
 {
-  "name": "react",
+  "name": "@js-analytics/react",
   "version": "1.0.0",
   "description": "A monitor to setup monitoring for react projects using error boundaries.",
   "main": "./lib/cjs/index.js",
