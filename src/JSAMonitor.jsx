@@ -42,7 +42,7 @@ export const monitor = {
     try {
       func();
     } catch (err) {
-      this.report(err);
+      this.report(err, "Caught with guard");
     }
   },
   setup: function (props = {}) {
