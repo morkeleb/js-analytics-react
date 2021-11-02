@@ -1,4 +1,5 @@
 import React from 'react';
+require('isomorphic-fetch');
 
 const settings = {};
 function write_report_with_fetch(error) {
