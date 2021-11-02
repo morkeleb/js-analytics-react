@@ -1,0 +1,32 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "A monitor to setup monitoring for react projects using error boundaries.",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
+  "files": [
+    "/lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "4.4.4",
+    "@types/react": "^17.0.27"
+  },
+  "peerDependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "keywords": [
+    "error",
+    "logging",
+    "js-analytics",
+    "analytics",
+    "telemetry"
+  ],
+  "author": "Morten Nielsen",
+  "license": "MIT"
+}
