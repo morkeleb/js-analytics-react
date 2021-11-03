@@ -82,8 +82,9 @@ export class Monitor {
     // @ts-ignore: Need to check for navigator and beacon to send with beacon
     if(navigator && navigator.sendBeacon){
       this.write_report_with_beacon(error)
+    } else {
+      this.write_report_with_fetch(error);
     }
-    this.write_report_with_fetch(error);
     
   }
 

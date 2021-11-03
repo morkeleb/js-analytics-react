@@ -1,6 +1,6 @@
 {
   "name": "@js-analytics/react",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A monitor for js-analytics to setup monitoring for react projects using error boundaries.",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
