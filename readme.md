@@ -64,8 +64,7 @@ import type { NextFetchEvent, NextRequest } from 'next/server';
 
 export function middleware(req: NextRequest, ev: NextFetchEvent) {
   setupJSAnalytics({
-    pid: '358f879d-83c0-4282-81b3-08bb1cfaae2e',
-    host: 'js-analytics.vercel.app',
+      pid:'<<YOUR JS-ANALYTICS PROJECT ID>>'
   });
 }
 

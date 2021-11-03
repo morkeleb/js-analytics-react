@@ -48,6 +48,11 @@ export class Monitor {
     this.report = this.report.bind(this);
     this.guard = this.guard.bind(this);
     this.write_report_with_fetch = this.write_report_with_fetch.bind(this);
+    this.write_report_with_beacon = this.write_report_with_beacon.bind(this);
+  }
+
+  write_report_with_beacon(error:JSAError){
+    navigator.sendBeacon(this.endpoint, JSON.stringify(error));
   }
 
    write_report_with_fetch(error:JSAError) {
@@ -74,7 +79,10 @@ export class Monitor {
       capturePoint,
     };
 
-    
+    // @ts-ignore: Need to check for navigator and beacon to send with beacon
+    if(navigator && navigator.sendBeacon){
+      this.write_report_with_beacon(error)
+    }
     this.write_report_with_fetch(error);
     
   }
