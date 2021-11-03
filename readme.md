@@ -59,12 +59,13 @@ This will capture all errors that occur during server-side render and client-sid
 
 for Next.js middleware add a file called `_middleware.ts` in your `pages/api` folder with the following content:
 ```typescript
-import { monitor } from '@js-analytics/react';
+import { setupJSAnalytics } from '@js-analytics/react';
 import type { NextFetchEvent, NextRequest } from 'next/server';
 
 export function middleware(req: NextRequest, ev: NextFetchEvent) {
-  monitor.setup({
-    pid: '<<YOUR JS-ANALYTICS PROJECT ID>>',
+  setupJSAnalytics({
+    pid: '358f879d-83c0-4282-81b3-08bb1cfaae2e',
+    host: 'js-analytics.vercel.app',
   });
 }
 

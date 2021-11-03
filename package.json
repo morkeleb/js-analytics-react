@@ -1,6 +1,6 @@
 {
   "name": "@js-analytics/react",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A monitor for js-analytics to setup monitoring for react projects using error boundaries.",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
@@ -16,11 +16,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "publish": "tsc && npm publish"
+    "publish": "tsc && npm publish --access public"
   },
   "devDependencies": {
-    "typescript": "4.4.4",
-    "@types/react": "^17.0.27"
+    "@types/node": "^16.11.6",
+    "@types/react": "^17.0.27",
+    "typescript": "4.4.4"
   },
   "peerDependencies": {
     "react": "17.0.2",
@@ -36,6 +37,7 @@
   "author": "Morten Nielsen",
   "license": "MIT",
   "dependencies": {
-    "isomorphic-fetch": "^3.0.0"
+    "isomorphic-fetch": "^3.0.0",
+    "react": "^17.0.2"
   }
 }
