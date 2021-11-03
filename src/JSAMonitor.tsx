@@ -30,8 +30,6 @@ export class Monitor {
   constructor(options:JSAOptions){
     this.host = options.host || 'js-analytics.com';
     const protocol =
-      canUseDOM &&
-      document.location.protocol &&
       this.host.indexOf('localhost') == -1
         ? 'https://'
         : 'http://';
