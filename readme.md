@@ -56,20 +56,6 @@ export default MyApp;
 ```
 This will capture all errors that occur during server-side render and client-side executions and report them to JS-Analytics.
 
-
-for Next.js middleware add a file called `_middleware.ts` in your `pages/api` folder with the following content:
-```typescript
-import { setupJSAnalytics } from '@js-analytics/react';
-import type { NextFetchEvent, NextRequest } from 'next/server';
-
-export function middleware(req: NextRequest, ev: NextFetchEvent) {
-  setupJSAnalytics({
-      pid:'<<YOUR JS-ANALYTICS PROJECT ID>>'
-  });
-}
-
-```
-
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
