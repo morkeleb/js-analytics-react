@@ -36,13 +36,10 @@ export class Monitor {
       protocol + this.host + '/api/errors/v1/' + options.pid;
     // Add general error logging.
     process.on('unhandledRejection', (error:HandledError, promise) => {
-      console.log('what 2?');
       this.report(error, 'Node unhandled promise rejection');
     });
 
-    process.on('uncaughtException', (error:HandledError)=> {
-      console.log('what?');
-      
+    process.on('uncaughtException', (error:HandledError)=> { 
       this.report(error, 'Node unhandled exception');
     });
     this.report = this.report.bind(this);
@@ -83,7 +80,7 @@ export class Monitor {
     };
 
     // @ts-ignore: Need to check for navigator and beacon to send with beacon
-    if(navigator && navigator.sendBeacon){
+    if(typeof navigator !== 'undefined' && navigator.sendBeacon){
       this.write_report_with_beacon(error)
     } else {
       this.write_report_with_fetch(error);
