@@ -22,15 +22,13 @@ The monitor works with react error boundaries. By wrapping your react app with t
 
 ```typescript
 
-import JSAMonitor from '@js-analytics/react';
+import { JSAMonitor } from '@js-analytics/react';
 
 // more code here
 
 // in your render
 return (
-  <JSAMonitor
-      pid="<<YOUR JS-ANALYTICS PROJECT ID>>"
-    >
+  <JSAMonitor pid="<YOUR JS-ANALYTICS PROJECT ID>">
     your react code goes here
     </JSAMonitor>
 )
@@ -40,13 +38,11 @@ return (
 in Next.js I recommend placing is in the `pages/_app.tsx` file:
 ```typescript
 
-import JSAMonitor from '@js-analytics/react';
+import { JSAMonitor } from '@js-analytics/react';
 
 function MyApp({ Component, pageProps, router }) {
 return (
-  <JSAMonitor
-      pid="<<YOUR JS-ANALYTICS PROJECT ID>>"
-    >
+  <JSAMonitor pid="<YOUR JS-ANALYTICS PROJECT ID>">
     your react code goes here
     </JSAMonitor>
   );
