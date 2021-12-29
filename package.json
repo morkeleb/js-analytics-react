@@ -1,6 +1,6 @@
 {
   "name": "@js-analytics/react",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A monitor for js-analytics to setup monitoring for react projects using error boundaries.",
   "main": "./lib/bundles/bundle.umd.js",
   "module": "./lib/bundles/bundle.esm.js",
@@ -17,7 +17,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf lib",
     "build": "npm run clean && rollup -c",
-    "publish": "tsc && npm publish --access public"
+    "publish": "npm run build && npm publish --access public"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
