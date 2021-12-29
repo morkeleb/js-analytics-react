@@ -1,46 +1,43 @@
-//require('isomorphic-fetch');
+//require("cross-fetch/polyfill");
 
 var canUseDOM = !!(
-  typeof window !== 'undefined' &&
+  typeof window !== "undefined" &&
   window.document &&
   window.document.createElement
 );
 
 export type JSAOptions = {
-  host?: string,
-  pid: string
+  host?: string;
+  pid: string;
 };
 
-export type HandledError =  Error & {hasBeenCaught: boolean}
+export type HandledError = Error & { hasBeenCaught: boolean };
 
 type JSAError = {
-  stack: string,
-  error_message: string,
-  url: string,
-  query_string: string,
-  http_referrer: string,
-  useragent: string,
-  capturePoint: string,
+  stack: string;
+  error_message: string;
+  url: string;
+  query_string: string;
+  http_referrer: string;
+  useragent: string;
+  capturePoint: string;
 };
 
 export class Monitor {
   host: string;
   endpoint: string;
-  constructor(options:JSAOptions){
-    this.host = options.host || 'js-analytics.com';
+  constructor(options: JSAOptions) {
+    this.host = options.host || "js-analytics.com";
     const protocol =
-      this.host.indexOf('localhost') === -1
-        ? 'https://'
-        : 'http://';
-    this.endpoint =
-      protocol + this.host + '/api/errors/v1/' + options.pid;
+      this.host.indexOf("localhost") === -1 ? "https://" : "http://";
+    this.endpoint = protocol + this.host + "/api/errors/v1/" + options.pid;
     // Add general error logging.
-    process.on('unhandledRejection', (error:HandledError, promise) => {
-      this.report(error, 'Node unhandled promise rejection');
+    process.on("unhandledRejection", (error: HandledError, promise) => {
+      this.report(error, "Node unhandled promise rejection");
     });
 
-    process.on('uncaughtException', (error:HandledError)=> { 
-      this.report(error, 'Node unhandled exception');
+    process.on("uncaughtException", (error: HandledError) => {
+      this.report(error, "Node unhandled exception");
     });
     this.report = this.report.bind(this);
     this.guard = this.guard.bind(this);
@@ -49,53 +46,51 @@ export class Monitor {
     this.write_report_with_beacon = this.write_report_with_beacon.bind(this);
   }
 
-  write_report_with_beacon(error:JSAError){
+  write_report_with_beacon(error: JSAError) {
     navigator.sendBeacon(this.endpoint, JSON.stringify(error));
   }
 
-   write_report_with_fetch(error:JSAError) {
-     console.log('doing error', error);
-     
+  write_report_with_fetch(error: JSAError) {
+    console.log("doing error", error);
+
     fetch(this.endpoint, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json', // TODO: CORS HEADERS HERE?
+        "Content-Type": "application/json", // TODO: CORS HEADERS HERE?
       },
       body: JSON.stringify(error),
     });
   }
 
-  report(err:Error, capturePoint: string){
-
+  report(err: Error, capturePoint: string) {
     // TODO align window on error with try catch information
     // TODO add more info from node crashes here
-    var error : JSAError = {
-      stack: err.stack||'',
+    var error: JSAError = {
+      stack: err.stack || "",
       error_message: err.message,
-      url: canUseDOM ? location.href : '',
-      query_string: canUseDOM ? location.search : '',
-      http_referrer: canUseDOM ? document.referrer : '',
-      useragent: canUseDOM ? navigator.userAgent : 'Node',
+      url: canUseDOM ? location.href : "",
+      query_string: canUseDOM ? location.search : "",
+      http_referrer: canUseDOM ? document.referrer : "",
+      useragent: canUseDOM ? navigator.userAgent : "Node",
       capturePoint,
     };
 
     // @ts-ignore: Need to check for navigator and beacon to send with beacon
-    if(typeof navigator !== 'undefined' && navigator.sendBeacon){
-      this.write_report_with_beacon(error)
+    if (typeof navigator !== "undefined" && navigator.sendBeacon) {
+      this.write_report_with_beacon(error);
     } else {
       this.write_report_with_fetch(error);
     }
-    
   }
 
-  guard(func:Function){
+  guard(func: Function) {
     try {
       func();
     } catch (err) {
       this.report(err as HandledError, "Caught with guard");
     }
   }
-  async guardAsync(func:Function){
+  async guardAsync(func: Function) {
     try {
       await func();
     } catch (err) {
@@ -104,7 +99,7 @@ export class Monitor {
   }
 }
 
-export function setupJSAnalytics(settings:JSAOptions){
-    // @ts-ignore: keeping the monitor on the process object if possible
-   process.__jsamonitor = new Monitor(settings);
+export function setupJSAnalytics(settings: JSAOptions) {
+  // @ts-ignore: keeping the monitor on the process object if possible
+  process.__jsamonitor = new Monitor(settings);
 }
