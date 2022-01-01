@@ -14,7 +14,6 @@ export default {
       globals: {
         react: "React",
         "react-dom": "ReactDOM",
-        fetch: "fetch",
       },
     },
     {
@@ -25,7 +24,6 @@ export default {
       globals: {
         react: "React",
         "react-dom": "ReactDOM",
-        fetch: "fetch",
       },
     },
     {
@@ -36,7 +34,6 @@ export default {
       globals: {
         react: "React",
         "react-dom": "ReactDOM",
-        fetch: "fetch",
       },
     },
     {
@@ -48,7 +45,6 @@ export default {
       globals: {
         react: "React",
         "react-dom": "ReactDOM",
-        fetch: "fetch",
       },
     },
   ],

@@ -1,4 +1,4 @@
-//require("cross-fetch/polyfill");
+const fetch = require("cross-fetch");
 
 var canUseDOM = !!(
   typeof window !== "undefined" &&
@@ -51,8 +51,6 @@ export class Monitor {
   }
 
   write_report_with_fetch(error: JSAError) {
-    console.log("doing error", error);
-
     fetch(this.endpoint, {
       method: "POST",
       headers: {
